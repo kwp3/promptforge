@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import { BASE_URL, getCanonicalUrl } from "@/lib/canonical";
 import "./globals.css";
 
 const inter = Inter({
@@ -12,24 +13,64 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
 });
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0A0C10" },
+    { media: "(prefers-color-scheme: light)", color: "#FF5500" },
+  ],
+};
+
 export const metadata: Metadata = {
-  title: "PromptForge — Free AI Prompt Generator",
+  metadataBase: new URL(BASE_URL),
+  title: {
+    template: "%s | PromptForge",
+    default: "PromptForge — Free AI Prompt Generator | Build Better Prompts",
+  },
   description:
-    "Turn rough ideas into powerful AI prompts. Free, instant, no signup required. Sponsored by ForgeWorks.",
+    "Generate powerful AI prompts instantly. Free, no signup. 6 categories: coding, writing, business, creative, education, and marketing.",
+  keywords: [
+    "ai prompt generator",
+    "free prompt generator",
+    "chatgpt prompts",
+    "prompt engineering",
+    "system prompt generator",
+    "ai agent prompts",
+  ],
   openGraph: {
-    title: "PromptForge — Free AI Prompt Generator",
+    title: "PromptForge — Free AI Prompt Generator | Build Better Prompts",
     description:
-      "Turn rough ideas into powerful AI prompts. Free, instant, no signup.",
-    url: "https://promptforge.vercel.app",
+      "Generate powerful AI prompts instantly. Free, no signup. 6 categories: coding, writing, business, creative, education, and marketing.",
+    url: BASE_URL,
     siteName: "PromptForge",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "PromptForge — Free AI Prompt Generator",
+    title: "PromptForge — Free AI Prompt Generator | Build Better Prompts",
     description:
-      "Turn rough ideas into powerful AI prompts. Free, instant, no signup.",
+      "Generate powerful AI prompts instantly. Free, no signup. 6 categories: coding, writing, business, creative, education, and marketing.",
   },
+  alternates: {
+    canonical: getCanonicalUrl(),
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  manifest: "/manifest.json",
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "PromptForge",
+  description:
+    "Free AI prompt generator with 6 categories. No signup required.",
+  url: BASE_URL,
+  applicationCategory: "UtilitiesApplication",
+  operatingSystem: "Web Browser",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  author: { "@type": "Organization", name: "ForgeWorks" },
 };
 
 export default function RootLayout({
@@ -42,6 +83,10 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {children}
       </body>
     </html>

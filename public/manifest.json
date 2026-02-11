@@ -1,0 +1,8 @@
+{
+  "name": "PromptForge — Build Better Prompts",
+  "short_name": "PromptForge",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0C10",
+  "theme_color": "#FF5500"
+}

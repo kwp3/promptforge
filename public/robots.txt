@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Sitemap: https://promptforge-teal.vercel.app/sitemap.xml
