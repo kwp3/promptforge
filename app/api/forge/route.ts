@@ -1,10 +1,31 @@
 import { NextRequest, NextResponse } from "next/server";
 import { SYSTEM_PROMPT, CATEGORIES, MAX_INPUT_LENGTH } from "@/lib/constants";
+import { checkRateLimit } from "@/lib/rate-limit";
 
 const VALID_CATEGORIES = CATEGORIES.map((c) => c.id);
 
 export async function POST(req: NextRequest) {
   try {
+    const ip =
+      req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      req.headers.get("x-real-ip") ||
+      "unknown";
+
+    const { allowed, remaining, resetIn } = checkRateLimit(ip);
+
+    if (!allowed) {
+      return NextResponse.json(
+        { error: "Too many requests. Please wait a moment and try again." },
+        {
+          status: 429,
+          headers: {
+            "Retry-After": String(Math.max(1, Math.ceil(resetIn / 1000))),
+            "X-RateLimit-Remaining": "0",
+          },
+        }
+      );
+    }
+
     const { category, rawPrompt } = await req.json();
 
     if (!rawPrompt?.trim()) {
@@ -73,7 +94,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    return NextResponse.json({ enhancedPrompt });
+    return NextResponse.json(
+      { enhancedPrompt },
+      { headers: { "X-RateLimit-Remaining": String(remaining) } }
+    );
   } catch (error) {
     console.error("Forge API error:", error);
     return NextResponse.json(

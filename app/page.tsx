@@ -59,7 +59,9 @@ export default function Home() {
 
       const data: ForgeResponse = await res.json();
 
-      if (data.error) {
+      if (res.status === 429) {
+        showError("You're generating prompts too fast! Wait a moment and try again.");
+      } else if (data.error) {
         showError(data.error);
       } else if (data.enhancedPrompt) {
         setOutput(data.enhancedPrompt);
