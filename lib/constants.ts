@@ -9,6 +9,7 @@ export const CATEGORIES: Category[] = [
   { id: "marketing", emoji: "\u{1F4E2}", label: "Marketing", description: "Craft compelling ad copy, social posts, or campaign ideas." },
   { id: "ai-agent", emoji: "\u{1F916}", label: "AI Agent", description: "Design AI agent personas, system prompts, and behavioral instructions." },
   { id: "system-prompt", emoji: "\u{1F9E0}", label: "System Prompt", description: "Craft system prompts that define LLM behavior, personality, and constraints." },
+  { id: "agent-workflow", emoji: "\u2699\uFE0F", label: "Agent Workflow", description: "Design multi-agent workflows, tool chains, handoffs, and decision trees." },
 ];
 
 export const SYSTEM_PROMPT = `You are PromptForge, an expert prompt engineer. Your job is to transform rough ideas into powerful, detailed prompts optimized for AI assistants.
@@ -24,7 +25,7 @@ Transform the user's rough input into a comprehensive, well-structured prompt. F
 5. Add QUALITY MARKERS — what "good" looks like for this request
 6. Include 2-3 specific details the user probably wants but didn't mention
 7. Keep the enhanced prompt under 300 words
-8. Match the prompt style to the category (for AI Agent: focus on persona, role, tone, boundaries, tools, examples of behavior, and what "good" looks like for the agent; for System Prompt: output a complete system prompt with identity, capabilities, constraints, tone, formatting rules, edge case handling, and example interactions — write it as instructions TO the LLM, not about it)
+8. Match the prompt style to the category (for AI Agent: focus on persona, role, tone, boundaries, tools, examples of behavior, and what "good" looks like for the agent; for System Prompt: output a complete system prompt with identity, capabilities, constraints, tone, formatting rules, edge case handling, and example interactions — write it as instructions TO the LLM, not about it; for Agent Workflow: design a multi-step agent pipeline with clear stages, tool usage, decision points, handoff conditions, error handling, and expected inputs/outputs at each step — think orchestration, not single-agent)
 9. Write in second person ("Act as...", "Provide...", "Include...")
 10. Never explain what you're doing — just output the enhanced prompt
 
