@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     default: "PromptForge — Free AI Prompt Generator | Build Better Prompts",
   },
   description:
-    "Generate powerful AI prompts instantly. Free, no signup. 6 categories: coding, writing, business, creative, education, and marketing.",
+    "Generate powerful AI prompts instantly. Free, no signup. 9 categories: coding, writing, business, creative, education, marketing, AI agents, system prompts, and agent workflows.",
   keywords: [
     "ai prompt generator",
     "free prompt generator",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "PromptForge — Free AI Prompt Generator | Build Better Prompts",
     description:
-      "Generate powerful AI prompts instantly. Free, no signup. 6 categories: coding, writing, business, creative, education, and marketing.",
+      "Generate powerful AI prompts instantly. Free, no signup. 9 categories: coding, writing, business, creative, education, marketing, AI agents, system prompts, and agent workflows.",
     url: BASE_URL,
     siteName: "PromptForge",
     type: "website",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "PromptForge — Free AI Prompt Generator | Build Better Prompts",
     description:
-      "Generate powerful AI prompts instantly. Free, no signup. 6 categories: coding, writing, business, creative, education, and marketing.",
+      "Generate powerful AI prompts instantly. Free, no signup. 9 categories: coding, writing, business, creative, education, marketing, AI agents, system prompts, and agent workflows.",
   },
   alternates: {
     canonical: getCanonicalUrl(),
@@ -65,7 +65,7 @@ const jsonLd = {
   "@type": "WebApplication",
   name: "PromptForge",
   description:
-    "Free AI prompt generator with 6 categories. No signup required.",
+    "Free AI prompt generator with 9 categories. No signup required.",
   url: BASE_URL,
   applicationCategory: "UtilitiesApplication",
   operatingSystem: "Web Browser",
